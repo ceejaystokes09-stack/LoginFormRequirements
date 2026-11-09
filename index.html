@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f4f0" />
+    <title>Sign in</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: #17231f;
+        background: #f5f4f0;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-width: 320px;
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 32px 20px;
+        background:
+          radial-gradient(
+            ellipse at 12% 12%,
+            rgb(200 224 202 / 52%),
+            transparent 34%
+          ),
+          radial-gradient(
+            ellipse at 90% 86%,
+            rgb(244 218 185 / 48%),
+            transparent 32%
+          ),
+          #f5f4f0;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.9fr) minmax(340px, 1fr);
+        width: min(940px, 100%);
+        min-height: 570px;
+        overflow: hidden;
+        border: 1px solid rgb(23 35 31 / 8%);
+        border-radius: 24px;
+        background: #fff;
+        box-shadow: 0 24px 80px rgb(34 48 40 / 12%);
+      }
+
+      .welcome {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 42px;
+        color: #f5f7f2;
+        background:
+          linear-gradient(155deg, rgb(20 49 40 / 25%), rgb(20 49 40 / 82%)),
+          #315b4b;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border: 1px solid rgb(255 255 255 / 35%);
+        border-radius: 11px;
+        font-size: 18px;
+      }
+
+      .welcome-copy {
+        max-width: 330px;
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: #d3e2d7;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(32px, 5vw, 46px);
+        font-weight: 600;
+        letter-spacing: -0.055em;
+        line-height: 1.08;
+      }
+
+      .welcome-copy p:last-child {
+        margin: 18px 0 0;
+        color: #d5e0d9;
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .privacy-note {
+        margin: 0;
+        color: #d5e0d9;
+        font-size: 12px;
+      }
+
+      .form-panel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 48px;
+      }
+
+      form {
+        width: min(100%, 360px);
+      }
+
+      .form-heading {
+        margin-bottom: 30px;
+      }
+
+      .form-heading h2 {
+        margin: 0;
+        font-size: 27px;
+        font-weight: 650;
+        letter-spacing: -0.04em;
+      }
+
+      .form-heading p {
+        margin: 8px 0 0;
+        color: #69756f;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .field {
+        margin-top: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .input-wrap {
+        position: relative;
+      }
+
+      input[type="email"],
+      input[type="password"],
+      input[type="text"] {
+        width: 100%;
+        height: 48px;
+        padding: 0 14px;
+        border: 1px solid #dce2dd;
+        border-radius: 10px;
+        outline: none;
+        background: #fff;
+        color: #17231f;
+        font: inherit;
+        font-size: 14px;
+        transition:
+          border-color 150ms ease,
+          box-shadow 150ms ease;
+      }
+
+      input[type="password"],
+      input[type="text"].password-input {
+        padding-right: 68px;
+      }
+
+      input:focus {
+        border-color: #42765e;
+        box-shadow: 0 0 0 3px rgb(66 118 94 / 14%);
+      }
+
+      input::placeholder {
+        color: #9aa49e;
+      }
+
+      .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        padding: 5px;
+        transform: translateY(-50%);
+        border: 0;
+        background: transparent;
+        color: #547261;
+        cursor: pointer;
+        font: inherit;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .toggle-password:focus-visible,
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid rgb(66 118 94 / 35%);
+        outline-offset: 3px;
+      }
+
+      .password-help {
+        margin: 9px 0 0;
+        color: #69756f;
+        font-size: 12px;
+      }
+
+      .requirements {
+        display: grid;
+        gap: 8px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .requirements li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #69756f;
+        font-size: 12px;
+        transition: color 150ms ease;
+      }
+
+      .requirements li::before {
+        display: grid;
+        width: 16px;
+        height: 16px;
+        flex: 0 0 16px;
+        place-items: center;
+        border: 1px solid #cbd4ce;
+        border-radius: 50%;
+        content: "";
+        font-size: 10px;
+      }
+
+      .requirements li.met {
+        color: #286044;
+      }
+
+      .requirements li.met::before {
+        border-color: #a9d2b7;
+        background: #e7f4e9;
+        content: "✓";
+      }
+
+      .form-error {
+        min-height: 18px;
+        margin: 8px 0 0;
+        color: #a33131;
+        font-size: 12px;
+      }
+
+      .form-options {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 14px 0 22px;
+        font-size: 12px;
+      }
+
+      .remember {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        margin: 0;
+        color: #56635c;
+        font-weight: 450;
+      }
+
+      .remember input {
+        accent-color: #315b4b;
+      }
+      a {
+        color: #315b4b;
+        font-weight: 650;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .submit-button {
+        width: 100%;
+        min-height: 48px;
+        border: 0;
+        border-radius: 10px;
+        background: #315b4b;
+        color: #fff;
+        cursor: pointer;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 650;
+        transition:
+          background 150ms ease,
+          transform 150ms ease;
+      }
+
+      .submit-button:hover {
+        background: #254a3b;
+      }
+      .submit-button:active {
+        transform: translateY(1px);
+      }
+
+      .signup-prompt {
+        margin: 22px 0 0;
+        color: #69756f;
+        text-align: center;
+        font-size: 13px;
+      }
+
+      @media (max-width: 720px) {
+        body {
+          padding: 18px;
+        }
+        .layout {
+          grid-template-columns: 1fr;
+          min-height: 0;
+        }
+        .welcome {
+          min-height: 210px;
+          padding: 28px;
+        }
+        .welcome-copy {
+          margin-top: 36px;
+        }
+        .welcome-copy h1 {
+          font-size: 34px;
+        }
+        .welcome-copy p:last-child,
+        .privacy-note {
+          display: none;
+        }
+        .form-panel {
+          padding: 34px 28px 38px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="layout">
+      <aside class="welcome" aria-label="Welcome">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">✦</span> Verdant
+        </div>
+        <div class="welcome-copy">
+          <p class="eyebrow">A calmer place to begin</p>
+          <h1>Good to have you back.</h1>
+          <p>Sign in to pick up right where you left off.</p>
+        </div>
+        <p class="privacy-note">
+          Your account details are kept private and secure.
+        </p>
+      </aside>
+
+      <section class="form-panel" aria-labelledby="form-title">
+        <form action="/login" method="post">
+          <div class="form-heading">
+            <h2 id="form-title">Welcome back</h2>
+            <p>Enter your details to sign in to your account.</p>
+          </div>
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="username"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <input
+                id="password"
+                class="password-input"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                aria-describedby="password-help password-requirements password-error"
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                class="toggle-password"
+                type="button"
+                aria-controls="password"
+                aria-label="Show password"
+                aria-pressed="false"
+              >
+                Show
+              </button>
+            </div>
+            <p id="password-help" class="password-help"></p>
+            <ul
+              id="password-requirements"
+              class="requirements"
+              aria-live="polite"
+            ></ul>
+            <p id="password-error" class="form-error" aria-live="polite"></p>
+          </div>
+
+          <div class="form-options">
+            <label class="remember"
+              ><input type="checkbox" name="remember" /> Remember me</label
+            >
+            <a href="/forgot-password">Forgot password?</a>
+          </div>
+
+          <button class="submit-button" type="submit">Sign in</button>
+          <p class="signup-prompt">
+            New here? <a href="/register">Create an account</a>
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      const form = document.querySelector("form");
+      const password = document.querySelector("#password");
+      const passwordHelp = document.querySelector("#password-help");
+      const passwordRequirementsList = document.querySelector(
+        "#password-requirements",
+      );
+      const passwordError = document.querySelector("#password-error");
+      const togglePassword = document.querySelector(".toggle-password");
+
+      const passwordRules = {
+        minLength: 8,
+        requireUppercase: true,
+        requireLowercase: true,
+        requireNumber: true,
+        requireSpecialCharacter: true,
+      };
+
+      const requirementDefinitions = [
+        {
+          key: "minLength",
+          label: () => `At least ${passwordRules.minLength} characters`,
+          isMet: (value) => value.length >= passwordRules.minLength,
+        },
+        {
+          key: "requireUppercase",
+          label: () => "At least one uppercase letter",
+          isMet: (value) => /[A-Z]/.test(value),
+        },
+        {
+          key: "requireLowercase",
+          label: () => "At least one lowercase letter",
+          isMet: (value) => /[a-z]/.test(value),
+        },
+        {
+          key: "requireNumber",
+          label: () => "At least one number",
+          isMet: (value) => /\d/.test(value),
+        },
+        {
+          key: "requireSpecialCharacter",
+          label: () => "At least one special character",
+          isMet: (value) => /[^A-Za-z0-9]/.test(value),
+        },
+      ];
+
+      const enabledRequirements = requirementDefinitions.filter(
+        (requirement) =>
+          requirement.key === "minLength" || passwordRules[requirement.key],
+      );
+
+      password.minLength = passwordRules.minLength;
+      passwordHelp.textContent = `Your password must meet the following requirements:`;
+
+      const requirementItems = enabledRequirements.map((requirement) => {
+        const item = document.createElement("li");
+        item.textContent = requirement.label();
+        passwordRequirementsList.append(item);
+        return { item, requirement };
+      });
+
+      function updatePasswordRequirement() {
+        const unmetRequirements = requirementItems.filter(
+          ({ requirement }) => !requirement.isMet(password.value),
+        );
+
+        requirementItems.forEach(({ item, requirement }) => {
+          item.classList.toggle("met", requirement.isMet(password.value));
+        });
+
+        const message = unmetRequirements
+          .map(({ requirement }) => requirement.label())
+          .join(", ");
+        password.setCustomValidity(
+          password.value.length === 0 || !message
+            ? ""
+            : `Password must include: ${message}.`,
+        );
+        return unmetRequirements;
+      }
+
+      password.addEventListener("input", () => {
+        updatePasswordRequirement();
+        passwordError.textContent = "";
+      });
+
+      togglePassword.addEventListener("click", () => {
+        const showing = password.type === "password";
+        password.type = showing ? "text" : "password";
+        togglePassword.textContent = showing ? "Hide" : "Show";
+        togglePassword.setAttribute(
+          "aria-label",
+          showing ? "Hide password" : "Show password",
+        );
+        togglePassword.setAttribute("aria-pressed", String(showing));
+      });
+
+      form.addEventListener("submit", (event) => {
+        const unmetRequirements = updatePasswordRequirement();
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          if (password.value.length > 0 && unmetRequirements.length > 0) {
+            passwordError.textContent = `Please update your password: ${unmetRequirements
+              .map(({ requirement }) => requirement.label().toLowerCase())
+              .join(", ")}.`;
+            password.focus();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
