@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f5f4f0" />
+    <script src="fontawesomelink" crossorigin="anonymous"></script>
     <title>Sign in</title>
     <style>
       :root {
@@ -425,7 +426,7 @@
                 aria-label="Show password"
                 aria-pressed="false"
               >
-                Show
+                <i class="fa-solid fa-eye-slash"></i>
               </button>
             </div>
             <p id="password-help" class="password-help"></p>
@@ -541,7 +542,10 @@
       togglePassword.addEventListener("click", () => {
         const showing = password.type === "password";
         password.type = showing ? "text" : "password";
-        togglePassword.textContent = showing ? "Hide" : "Show";
+        togglePassword.textContent = 
+          showing ? 
+          "<i class='fa-solid fa-eye'></i>" : 
+          "<i class='fa-solid fa-eye-slash'></i>";
         togglePassword.setAttribute(
           "aria-label",
           showing ? "Hide password" : "Show password",
